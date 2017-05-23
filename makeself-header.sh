@@ -33,7 +33,7 @@ elif test -x /usr/ucb/echo; then
 else
     print_cmd="echo"
 fi
-	
+
 if test -d /usr/xpg4/bin; then
     PATH=/usr/xpg4/bin:\$PATH
     export PATH
@@ -214,10 +214,10 @@ MS_Check()
 UnTAR()
 {
     if test x"\$quiet" = xn; then
-		tar \$1vf - 2>&1 || { echo Extraction failed. > /dev/tty; kill -15 \$$; }
+		tar \$1 -vJf - || { echo Extraction failed. > /dev/tty; kill -15 \$$; }
     else
 
-		tar \$1f - 2>&1 || { echo Extraction failed. > /dev/tty; kill -15 \$$; }
+		tar \$1 -vJf - || { echo Extraction failed. > /dev/tty; kill -15 \$$; }
     fi
 }
 
@@ -380,7 +380,7 @@ fi
 
 if test x"$NEED_ROOT" = xy -a \`id -u\` -ne 0; then
 	echo "Administrative privileges required for this archive (use su or sudo)" >&2
-	exit 1	
+	exit 1
 fi
 
 if test x"\$copy" \!= xphase2; then
