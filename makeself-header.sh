@@ -24,6 +24,7 @@ nooverwrite="$NOOVERWRITE"
 quiet="n"
 nodiskspace="n"
 export_conf="$EXPORT_CONF"
+untar_extra="$UNTAR_EXTRA"
 
 print_cmd_arg=""
 if type printf > /dev/null; then
@@ -214,10 +215,10 @@ MS_Check()
 UnTAR()
 {
     if test x"\$quiet" = xn; then
-		tar \$1 -vJf - || { echo Extraction failed. > /dev/tty; kill -15 \$$; }
+		tar \$1 "$UNTAR_EXTRA" -vf - || { echo Extraction failed. > /dev/tty; kill -15 \$$; }
     else
 
-		tar \$1 -vJf - || { echo Extraction failed. > /dev/tty; kill -15 \$$; }
+		tar \$1 "$UNTAR_EXTRA" -vf - || { echo Extraction failed. > /dev/tty; kill -15 \$$; }
     fi
 }
 
